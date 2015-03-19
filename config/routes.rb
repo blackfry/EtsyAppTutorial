@@ -1,19 +1,32 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get 'products/index'
+
+  get 'products/show'
+
+  get 'products/new'
+
+  get 'products/edit'
+
+  get 'categories/index'
+
+  get 'categories/show'
+
+  get 'categories/new'
+
+  get 'categories/edit'
+
   get 'pages/home'
   root 'pages#home'
-end
   
+  get '/' => 'pages#home'
   
-Rails.application.routes.draw do
-  get 'pages/erb_demo'
-end
+  resources :categories
+  get 'categories/:id/delete' => 'categories#delete', :as => :categories_delete
 
-Rails.application.routes.draw do
-  get 'pages/render_demo' 
-end
+  resources :products
+  get 'products/:id/delete' => 'products#delete', :as => :products_delete
 
-Rails.application.routes.draw do
-  get 'pages/redirect_demo' 
 end
 
 
